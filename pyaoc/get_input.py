@@ -4,6 +4,7 @@ import appdirs
 import requests
 from pathlib import Path
 
+
 def get_input(year: int, day: int, session: object) -> (str, str):
   """Return cache file input data from cache folder for certain problem"""
   cache_file = Path(os.path.join(appdirs.user_cache_dir(appname="AdventOfCode"), session.get('name'), str(year), str(day), 'input'))
@@ -18,4 +19,4 @@ def get_input(year: int, day: int, session: object) -> (str, str):
   else:
     with open(cache_file) as opened_file:
       input_data = opened_file.read()
-  return input_data, ''
+  return input_data.strip(), ''

@@ -1,0 +1,5 @@
+[style]
+based_on_style = facebook
+indent_width= 2
+join_multiple_lines=True
+column_limit = 150

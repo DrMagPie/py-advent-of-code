@@ -4,9 +4,12 @@ import appdirs
 import requests
 from pathlib import Path
 
-def submit_answer(year: int, day: int, part: int, session: object, answer: str, message: str) -> (str, bool):
-  """Save submitted input to file of problem"""
-  response = requests.post(f'https://adventofcode.com/{year}/day/{day}/answer', {'level': part, 'answer': answer}, cookies={'session': session.get('value')})
+
+def submit_answer(year: int, day: int, part: int, session: object, answer: str) -> (str, bool):
+  """Save submitted answer to file of problem"""
+  payload = {'level': part, 'answer': answer}
+  cookies = {'session': session.get('value')}
+  response = requests.post(f'https://adventofcode.com/{year}/day/{day}/answer', payload, cookies=cookies)
   if response.status_code != 200:
     return "Error Submiting a Solution Online doesn't got response code 200", True
   else:
