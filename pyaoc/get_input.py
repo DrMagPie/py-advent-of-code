@@ -1,11 +1,13 @@
 #! /usr/bin/env python
 import os
+from pathlib import Path
+from typing import Tuple
+
 import appdirs
 import requests
-from pathlib import Path
 
 
-def get_input(year: int, day: int, session: object) -> (str, str):
+def get_input(year: int, day: int, session: object) -> Tuple[str, str]:
   """Return cache file input data from cache folder for certain problem"""
   cache_file = Path(os.path.join(appdirs.user_cache_dir(appname="AdventOfCode"), session.get('name'), str(year), str(day), 'input'))
   input_data = None

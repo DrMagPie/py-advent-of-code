@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 import os
-import appdirs
-import requests
 from pathlib import Path
+
+import appdirs
 
 
 def check_status(year: int, day: int, part: int, session_name: str) -> str:

@@ -1,10 +1,11 @@
 #! /usr/bin/env python
 
-from .get_sesion import get_session
+from time import perf_counter_ns
+
 from .check_status import check_status
 from .get_input import get_input
+from .get_sesion import get_session
 from .submit_answer import submit_answer
-from time import perf_counter_ns
 
 # import os
 
@@ -36,12 +37,10 @@ def aoc(year: int, day: int, part: int, session_name: str = None, submit: bool =
       elif end > 1000000: end = f'{end / 1000000:.3f} ms'
       elif end > 1000: end = f'{end / 1000:.3f} µs'
       else: end = f'{end} ns'
-      if not previous:
-        if submit:
-          message, err = submit_answer(year, day, part, session, answer)
-          if err: status = '❌'
-          else: status = '✅'
-      else: status = '✅' if previous == str(answer) else '❌'
+      if previous: status = '✅' if previous == str(answer) else '❌'
+      elif submit:
+        message, err = submit_answer(year, day, part, session, answer)
+        status = '❌' if err else '✅'
     print(f'{status}| {year}-{day}-{part} => {answer} 🕛 {end}\t{message}')
     return answer
 

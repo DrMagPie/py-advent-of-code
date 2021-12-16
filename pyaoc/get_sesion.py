@@ -1,7 +1,8 @@
 #! /usr/bin/env python
 import os
-import appdirs
 from pathlib import Path
+
+import appdirs
 
 
 def get_session(name: str, reset: bool = False) -> str:
@@ -9,8 +10,7 @@ def get_session(name: str, reset: bool = False) -> str:
   config_dir = appdirs.user_config_dir(appname='AdventOfCode')
   if not name:
     session_list = os.listdir(config_dir)
-    if session_list != []: name = session_list[0]
-    else: name = 'default'
+    name = session_list[0] if session_list != [] else 'default'
   config_file = Path(os.path.join(config_dir, name, 'token'))
   if not config_file.exists() or reset:
     # os.makedirs(os.path.dirname(config_file), exist_ok=True)
