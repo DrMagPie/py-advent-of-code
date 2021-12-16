@@ -3,6 +3,8 @@
 Small wrapper to decorate python functions.
 Retrives Advent of Code Challenge Input, and submits results.
 
+innstall via `pip install https://github.com/DrMagPie/py-advent-of-code/archive/refs/heads/main.zip`
+
 provides `aoc` function wrapper that gets input executes wrapped function and submits result, unless specified notu submit.
 uppon furst execution will request sesion token from cookies. you can get it using dev tools of your browser.
 
