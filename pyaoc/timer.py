@@ -1,7 +1,7 @@
 from time import perf_counter_ns
 
 
-def timer(fnc):
+def time(fnc):
   """A decorator that uses time functions execution
 
   Args:
