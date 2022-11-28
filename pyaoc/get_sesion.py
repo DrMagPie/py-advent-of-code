@@ -8,6 +8,8 @@ import appdirs
 def get_session(name: str, reset: bool = False) -> str:
   """Return session name value from config file"""
   config_dir = appdirs.user_config_dir(appname='AdventOfCode')
+  if not os.path.exists(config_dir):
+    os.mkdir(config_dir)
   if not name:
     session_list = os.listdir(config_dir)
     name = session_list[0] if session_list != [] else 'default'
