@@ -12,7 +12,7 @@ def submit_answer(year: int, day: int, part: int, session: object, answer: str) 
   cookies = {'session': session.get('value')}
   response = requests.post(f'https://adventofcode.com/{year}/day/{day}/answer', payload, cookies=cookies)
   if response.status_code != 200:
-    return "Error Submiting a Solution Online doesn't got response code 200", True
+    return "Error Submitting a Solution Online doesn't got response code 200", True
   text_data = response.text
   if "too high" in text_data:
     return "Your answer is too high", True

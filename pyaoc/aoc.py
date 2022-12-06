@@ -4,7 +4,7 @@ from time import perf_counter_ns
 
 from .check_status import check_status
 from .get_input import get_input
-from .get_sesion import get_session
+from .get_session import get_session
 from .submit_answer import submit_answer
 
 # import os
