@@ -7,10 +7,8 @@ from .get_input import get_input
 from .get_session import get_session
 from .submit_answer import submit_answer
 
-# import os
 
-
-def aoc(year: int, day: int, part: int, session_name: str = None, submit: bool = True, reset_session: bool = False) -> any:
+def aoc(year: int, day: int, part: int, session_name: str = None, submit: bool = True, reset_session: bool = False) -> function:
   """Wrapper function to get input, call solver function and submit answer
 
   Args:
@@ -42,7 +40,7 @@ def aoc(year: int, day: int, part: int, session_name: str = None, submit: bool =
         message, err = submit_answer(year, day, part, session, answer)
         status = '❌' if err else '✅'
     print(f'{status}| {year}-{day}-{part} => {answer} 🕛 {end}\t{message}')
-    return answer
+    return function
 
   return decorator
 
