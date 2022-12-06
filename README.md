@@ -13,6 +13,7 @@ aoc(year: int, day: int, part: int, session_name: str = None, submit: bool = Tru
 ```
 
 ```python
+from pyaoc import aoc
 @aoc(2020, 1, 1)
 def Solve(data=None):
   data = set(map(int, data.strip().split('\n')))

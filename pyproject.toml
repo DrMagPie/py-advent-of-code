@@ -4,7 +4,7 @@ description = "Function wrapper for Advent of Code"
 license = "MIT"
 name = "PyAdventOfCode"
 packages = [{include = "pyaoc"}]
-version = "0.1.1"
+version = "0.1.2"
 
 [tool.poetry.dependencies]
 appdirs = "^1.4.4"

@@ -21,4 +21,4 @@ def get_input(year: int, day: int, session: object) -> Tuple[str, str]:
   else:
     with open(cache_file) as opened_file:
       input_data = opened_file.read()
-  return input_data.strip(), ''
+  return input_data.rstrip(), ''
