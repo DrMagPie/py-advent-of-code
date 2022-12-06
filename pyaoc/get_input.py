@@ -1,21 +1,19 @@
 #! /usr/bin/env python
-import os
-from pathlib import Path
 from typing import Tuple
 
-import appdirs
+from .config import cache_dir
 import requests
 
 
 def get_input(year: int, day: int, session: object) -> Tuple[str, str]:
   """Return cache file input data from cache folder for certain problem"""
-  cache_file = Path(os.path.join(appdirs.user_cache_dir(appname="AdventOfCode"), session.get('name'), str(year), str(day), 'input'))
+  cache_file = cache_dir.joinpath(session.get('name'), str(year), str(day), 'input')
   input_data = None
   if not cache_file.exists():
     input_data = requests.get(f'https://adventofcode.com/{year}/day/{day}/input', cookies={'session': session.get('value')}).text
     if "before it unlocks!" in input_data:
       return None, "Please don't repeatedly request this endpoint before it unlocks! The calendar countdown is synchronized with the server time; the link will be enabled on the calendar the instant this puzzle becomes available."
-    Path(os.path.dirname(cache_file)).mkdir(parents=True, exist_ok=True)
+    cache_file.parent.mkdir(parents=True, exist_ok=True)
     with open(cache_file, "w+") as opened_file:
       opened_file.write(input_data)
   else:

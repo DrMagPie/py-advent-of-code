@@ -1,12 +1,12 @@
 #! /usr/bin/env python
-import os
-from pathlib import Path
+from typing import Tuple
 
-import appdirs
 import requests
 
+from .config import cache_dir
 
-def submit_answer(year: int, day: int, part: int, session: object, answer: str) -> (str, bool):
+
+def submit_answer(year: int, day: int, part: int, session: object, answer: str) -> Tuple[str, bool]:
   """Save submitted answer to file of problem"""
   payload = {'level': part, 'answer': answer}
   cookies = {'session': session.get('value')}
@@ -25,8 +25,8 @@ def submit_answer(year: int, day: int, part: int, session: object, answer: str) 
   elif "You gave an answer" in text_data:
     return "You have to wait for 1 min before submitting next solution", True
   elif "That's the right answer" in text_data:
-    submitted_file = Path(os.path.join(appdirs.user_cache_dir(appname="AdventOfCode"), session.get('name'), str(year), str(day), str(part)))
-    Path(os.path.dirname(submitted_file)).mkdir(parents=True, exist_ok=True)
+    submitted_file = cache_dir.joinpath(session.get('name'), str(year), str(day), str(part))
+    submitted_file.parent.mkdir(parents=True, exist_ok=True)
     with open(submitted_file, "a") as opened_file:
       opened_file.write(str(answer))
     return "Congratulation, you have solved question successfully", False
