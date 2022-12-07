@@ -1,10 +1,10 @@
 [tool.poetry]
-authors = ["Dmitrijs Sorokins"]
+authors = ["Dmitrijs Sorokins "]
 description = "Function wrapper for Advent of Code"
 license = "MIT"
 name = "PyAdventOfCode"
 packages = [{include = "pyaoc"}]
-version = "0.1.2"
+version = "0.2.0"
 
 [tool.poetry.dependencies]
 appdirs = "^1.4.4"

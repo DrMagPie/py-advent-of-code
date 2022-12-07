@@ -1,13 +1,12 @@
 #! /usr/bin/env python
 import os
 
-from .config import cfgdir
+from .config import config_dir
 
 
 def get_session(name: str, reset: bool = False) -> str:
   """Return session name value from config file"""
 
-  config_dir = cfgdir
   if config_dir.exists() and not name:
     session_list = os.listdir(config_dir)
     name = session_list[0] if session_list != [] else 'default'

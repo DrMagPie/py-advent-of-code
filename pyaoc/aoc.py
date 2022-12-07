@@ -8,7 +8,7 @@ from .get_session import get_session
 from .submit_answer import submit_answer
 
 
-def aoc(year: int, day: int, part: int, session_name: str = None, submit: bool = True, reset_session: bool = False) -> function:
+def aoc(year: int, day: int, part: int, session_name: str = None, submit: bool = True, reset_session: bool = False) -> any:
   """Wrapper function to get input, call solver function and submit answer
 
   Args:
