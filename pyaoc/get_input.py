@@ -1,8 +1,9 @@
 #! /usr/bin/env python
 from typing import Tuple
 
-from .config import cache_dir
 import requests
+
+from .config import cache_dir
 
 
 def get_input(year: int, day: int, session: object) -> Tuple[str, str]:

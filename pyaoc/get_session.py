@@ -17,7 +17,7 @@ def get_session(name: str, reset: bool = False) -> str:
   if not config_file.exists() or reset:
     token = input("Enter Session Token: ")
     config_file.parent.mkdir(parents=True, exist_ok=True)
-    with open(config_file, "a+") as opened_file:
+    with open(config_file, "w+") as opened_file:
       opened_file.write(token)
 
   with open(config_file) as opened_file:

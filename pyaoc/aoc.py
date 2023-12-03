@@ -6,6 +6,7 @@ from .check_status import check_status
 from .get_input import get_input
 from .get_session import get_session
 from .submit_answer import submit_answer
+from .utils import format_time
 
 
 def aoc(year: int, day: int, part: int, session_name: str = None, submit: bool = True, reset_session: bool = False) -> any:
@@ -31,15 +32,11 @@ def aoc(year: int, day: int, part: int, session_name: str = None, submit: bool =
       start = perf_counter_ns()
       answer = function(input_data)
       end = perf_counter_ns() - start
-      if end > 1000000000: end = f'{end / 1000000000:.3f} s'
-      elif end > 1000000: end = f'{end / 1000000:.3f} ms'
-      elif end > 1000: end = f'{end / 1000:.3f} µs'
-      else: end = f'{end} ns'
       if previous: status = '✅' if previous == str(answer) else '❌'
       elif submit:
         message, err = submit_answer(year, day, part, session, answer)
         status = '❌' if err else '✅'
-    print(f'{status}| {year}-{day}-{part} => {answer} 🕛 {end}\t{message}')
+    print(f'{status}| {year}-{day}-{part} => {answer} 🕛 {format_time(end)}\t{message}')
     return function
 
   return decorator

@@ -3,17 +3,19 @@ authors = ["Dmitrijs Sorokins "]
 description = "Function wrapper for Advent of Code"
 license = "MIT"
 name = "PyAdventOfCode"
-packages = [{include = "pyaoc"}]
+packages = [{ include = "pyaoc" }]
 version = "0.2.0"
 
 [tool.poetry.dependencies]
 appdirs = "^1.4.4"
-python = "^3.6"
+python = "^3.10"
 requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
-yapf = "^0.30.0"
+isort = "^5.12.0"
+yapf = "^0.40.2"
+
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
