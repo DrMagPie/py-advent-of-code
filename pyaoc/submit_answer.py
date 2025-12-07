@@ -42,13 +42,13 @@ def submit_answer(year: int, day: int, part: int, session: object, answer: str) 
     return "Error Submitting a Solution Online doesn't got response code 200", True
   text_data = response.text
   if "too high" in text_data:
-    cache_wrong(answer, "Your answer is too high")
+    cache_wrong(invalid_answers_file, answer, "Your answer is too high")
     return "Your answer is too high", True
   elif "too low" in text_data:
-    cache_wrong(answer, "Your answer is too low")
+    cache_wrong(invalid_answers_file, answer, "Your answer is too low")
     return "Your answer is too low", True
   elif "That's not" in text_data:
-    cache_wrong(answer, "That's not the right answer")
+    cache_wrong(invalid_answers_file, answer, "That's not the right answer")
     return "That's not the right answer", True
   elif "You don't seem" in text_data:
     return "You don't seem to be solving right level", True
