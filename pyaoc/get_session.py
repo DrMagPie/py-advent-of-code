@@ -1,24 +1,39 @@
 #! /usr/bin/env python
 import os
 
+from dotenv import load_dotenv
+
 from .config import config_dir
+
+
+def get_name():
+  if name := os.environ.get("AOC_NAME"):
+    return name
+
+  if config_dir.exists():
+    session_list = os.listdir(config_dir)
+    return session_list[0] if session_list != [] else "default"
+
+  return "default"
+
+
+def get_token(name: str, reset: bool = False):
+  if token := os.environ.get("AOC_TOKEN"):
+    return token
+  config_file = config_dir.joinpath(name, "token")
+  if not config_file.exists() or reset:
+    token = input("Enter Session Token: ")
+    config_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(config_file, "w+") as f:
+      f.write(token)
+      return token
+  with open(config_file) as f:
+    return f.read()
 
 
 def get_session(name: str, reset: bool = False) -> str:
   """Return session name value from config file"""
-
-  if config_dir.exists() and not name:
-    session_list = os.listdir(config_dir)
-    name = session_list[0] if session_list != [] else 'default'
-  elif not name:
-    name = 'default'
-
-  config_file = config_dir.joinpath(name, 'token')
-  if not config_file.exists() or reset:
-    token = input("Enter Session Token: ")
-    config_file.parent.mkdir(parents=True, exist_ok=True)
-    with open(config_file, "w+") as opened_file:
-      opened_file.write(token)
-
-  with open(config_file) as opened_file:
-    return {'name': name, 'value': opened_file.read()}
+  load_dotenv()
+  name = name if name else get_name()
+  token = get_token(name, reset)
+  return {"name": name, "value": token}

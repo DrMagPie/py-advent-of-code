@@ -1,4 +1,4 @@
-__version__ = '0.2.0'
+__version__ = "0.3.0"
 from .aoc import aoc, get_puzzle_input
 from .bench import bench
 from .profiler import profile
