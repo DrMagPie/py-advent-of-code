@@ -30,9 +30,9 @@ def aoc(year: int, day: int, part: int, session_name: str = None, submit: bool =
     input_data, message = get_input(year, day, session)
     if input_data:
       start = perf_counter_ns()
-      answer = function(input_data)
+      answer = str(function(input_data))
       end = perf_counter_ns() - start
-      if previous: status = '✅' if previous == str(answer) else '❌'
+      if previous: status = '✅' if previous == answer else '❌'
       elif submit:
         message, err = submit_answer(year, day, part, session, answer)
         status = '❌' if err else '✅'
